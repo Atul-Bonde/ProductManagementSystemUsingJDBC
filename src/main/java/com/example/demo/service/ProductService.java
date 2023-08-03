@@ -79,14 +79,31 @@ public class ProductService implements ProductServiceI {
 	@Override
 	public void updatetype(String type, String name) throws ClassNotFoundException, SQLException {
 
-		productRepository.updatetype(type, name);
+		ArrayList<Product> finbyname = productRepository.finbyname(name);
+
+		if (finbyname.isEmpty()) {
+
+			System.out.println("Invalid Product Name");
+		} else {
+
+			productRepository.updatetype(type, name);
+
+		}
 	}
 
 	@Override
 	public void updatewarranty(int warranty, String name) throws ClassNotFoundException, SQLException {
 
-		productRepository.updatewarranty(warranty, name);
+		ArrayList<Product> finbyname = productRepository.finbyname(name);
 
+		if (finbyname.isEmpty()) {
+
+			System.out.println("Invalid Product Name");
+
+		} else {
+
+			productRepository.updatewarranty(warranty, name);
+
+		}
 	}
-
 }
