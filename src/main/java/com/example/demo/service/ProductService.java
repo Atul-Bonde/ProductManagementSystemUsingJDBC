@@ -55,9 +55,8 @@ public class ProductService implements ProductServiceI {
 		if (getbyid.getName() == null) {
 
 			System.out.println("Invalid Id");
-		} 
-		else {
-			
+		} else {
+
 			productRepository.updatename(id, name);
 		}
 	}
@@ -65,8 +64,16 @@ public class ProductService implements ProductServiceI {
 	@Override
 	public void updateplace(String place, String name) throws ClassNotFoundException, SQLException {
 
-		productRepository.updateplace(place, name);
+		ArrayList<Product> finbyname = productRepository.finbyname(name);
 
+		if (finbyname.isEmpty()) {
+
+			System.out.println("Invalid Product Name");
+
+		} else {
+
+			productRepository.updateplace(place, name);
+		}
 	}
 
 	@Override
